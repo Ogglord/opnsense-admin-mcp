@@ -1,0 +1,35 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.eggs/
+
+# Secrets — copy config.yaml.example and fill in
+config.yaml
+
+# SSH keys
+id_temp
+id_temp.pub
+
+# Test VM images (large binaries)
+test-env/*.qcow2
+test-env/*.iso
+
+# Claude Code state
+.claude/
+.crush/
+.mcp.json
+
+# uv
+.venv/
+
+# Ruff
+.ruff_cache/
+
+# pytest
+.pytest_cache/
+
+# macOS
+.DS_Store

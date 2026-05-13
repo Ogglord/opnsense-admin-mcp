@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opnsense-mcp"
+version = "0.2.0"
+description = "OPNsense MCP server for homelab diagnostics and automation"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.31",
+    "urllib3<2",
+    "fabric>=3.0",
+    "pydantic>=2.0",
+    "mcp[cli]>=1.0",
+    "manuf>=1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.8",
+    "pyright>=1.1",
+]
+
+[project.scripts]
+opn-mcp = "src.mcp_server:run"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/"]
+
+[tool.ruff]
+line-length = 130
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "C4", "SIM"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
