@@ -24,7 +24,7 @@ if [ ! -f "$SCRIPT_DIR/pyproject.toml" ]; then
   echo "  3. Write .mcp.json (Claude Code) and opencode.json (OpenCode) into $INSTALL_DIR"
   echo ""
   printf "Continue? [Y/n] "
-  read -r answer
+  read -r answer < /dev/tty
   case "${answer:-Y}" in
     [Yy]*) ;;
     *) echo "Aborted."; exit 0 ;;
@@ -41,7 +41,7 @@ else
   echo "  2. Write .mcp.json (Claude Code) and opencode.json (OpenCode) into $INSTALL_DIR"
   echo ""
   printf "Continue? [Y/n] "
-  read -r answer
+  read -r answer < /dev/tty
   case "${answer:-Y}" in
     [Yy]*) ;;
     *) echo "Aborted."; exit 0 ;;
@@ -54,11 +54,11 @@ uv sync
 
 # ── prompt for credentials ────────────────────────────────────────────────────
 bold "\nOPNsense connection details"
-read -rp "  OPN_HOSTS (comma-separated, e.g. http://10.10.10.1): " OPN_HOSTS
-read -rp "  OPN_KEY: " OPN_KEY
-read -rsp "  OPN_SECRET: " OPN_SECRET; echo
-read -rp "  OPN_SSH_KEY (path to SSH private key, or leave blank for agent): " OPN_SSH_KEY
-read -rsp "  NTOPNG_PASSWORD (or leave blank): " NTOPNG_PASSWORD; echo
+read -rp "  OPN_HOSTS (comma-separated, e.g. http://10.10.10.1): " OPN_HOSTS < /dev/tty
+read -rp "  OPN_KEY: " OPN_KEY < /dev/tty
+read -rsp "  OPN_SECRET: " OPN_SECRET < /dev/tty; echo
+read -rp "  OPN_SSH_KEY (path to SSH private key, or leave blank for agent): " OPN_SSH_KEY < /dev/tty
+read -rsp "  NTOPNG_PASSWORD (or leave blank): " NTOPNG_PASSWORD < /dev/tty; echo
 
 # ── Claude Code (.mcp.json) ───────────────────────────────────────────────────
 bold "\nWriting Claude Code config → $INSTALL_DIR/.mcp.json"
