@@ -1,6 +1,6 @@
-# opnsense-setup
+# OPNsense MCP Server
 
-AI-native MCP interface for OPNsense network automation and diagnostics.
+MCP interface for OPNsense, for doing network automation and basic diagnostics.
 
 Exposes OPNsense (DHCP, DNS, firewall, health checks) and network topology discovery as MCP tools for Claude Code and other AI assistants.
 
@@ -52,7 +52,7 @@ Exposes OPNsense (DHCP, DNS, firewall, health checks) and network topology disco
 ### Prerequisites
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) — Python package manager
-- OPNsense API credentials (System → Access → Users → create user with API enabled)
+- OPNsense API credentials (System → Access → Users → create user with API enabled) with proper access rights
 - SSH key on OPNsense (optional, for `read_log`, `shell_run`, `hw_sensors`)
 
 ### One-liner
