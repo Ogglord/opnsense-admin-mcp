@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "opnsense-mcp"
+name = "opnsense-admin-mcp"
 version = "0.2.0"
-description = "OPNsense MCP server for homelab diagnostics and automation"
+description = "MCP server for OPNsense network automation, diagnostics, and admin"
 requires-python = ">=3.10"
 dependencies = [
     "requests>=2.31",
@@ -24,7 +24,7 @@ dev = [
 ]
 
 [project.scripts]
-opn-mcp = "src.mcp_server:run"
+opnsense-admin-mcp = "src.mcp_server:run"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/"]

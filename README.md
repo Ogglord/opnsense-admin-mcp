@@ -1,6 +1,6 @@
-# OPNsense MCP Server
+# opnsense-admin-mcp
 
-MCP interface for OPNsense, for doing network automation and basic diagnostics.
+MCP server for OPNsense network automation, diagnostics, and administration.
 
 Exposes OPNsense (DHCP, DNS, firewall, health checks) and network topology discovery as MCP tools for Claude Code and other AI assistants.
 
@@ -51,34 +51,31 @@ Exposes OPNsense (DHCP, DNS, firewall, health checks) and network topology disco
 
 ### Prerequisites
 
-- [uv](https://docs.astral.sh/uv/getting-started/installation/) — Python package manager
-- OPNsense API credentials (System → Access → Users → create user with API enabled) with proper access rights
+- OPNsense API credentials (System → Access → Users → create user with API enabled)
 - SSH key on OPNsense (optional, for `read_log`, `shell_run`, `hw_sensors`)
 
-### One-liner
+### MCP client config
 
-Run from the directory where you want to open Claude Code or OpenCode:
+Add to your MCP client config (Claude Code `.mcp.json`, OpenCode `opencode.json`, etc.):
 
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Ogglord/opn-mcp/main/install.sh)"
+```json
+{
+  "mcpServers": {
+    "opnsense": {
+      "command": "uvx",
+      "args": ["opnsense-admin-mcp"],
+      "env": {
+        "OPN_HOSTS": "https://opnsense.local",
+        "OPN_KEY": "your-api-key",
+        "OPN_SECRET": "your-api-secret",
+        "OPN_SSH_KEY": "/home/user/.ssh/id_ed25519"
+      }
+    }
+  }
+}
 ```
 
-The script will:
-1. Clone the repo into `./opn-mcp` in the current directory
-2. Install dependencies via `uv`
-3. Prompt for OPNsense credentials
-4. Write `.mcp.json` (Claude Code) and `opencode.json` (OpenCode) into the cloned directory
-5. Smoke-test the MCP server
-
-Then open Claude Code or OpenCode from the `opn-mcp` directory.
-
-### Manual setup
-
-```sh
-git clone https://github.com/Ogglord/opn-mcp.git
-cd opn-mcp
-./install.sh
-```
+`uvx` fetches and runs the package from PyPI automatically — no clone or install needed.
 
 ### SSH (optional)
 
@@ -90,7 +87,7 @@ Required for `read_log`, `shell_run`, `hw_sensors`. Choose one:
 ### Running the MCP server manually
 
 ```sh
-uv run opn-mcp
+uvx opnsense-admin-mcp
 ```
 
 Runs on stdio, ready for Claude Code, OpenCode, or any MCP client.
