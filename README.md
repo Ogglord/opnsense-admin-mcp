@@ -60,7 +60,7 @@ Exposes OPNsense (DHCP, DNS, firewall, health checks) and network topology disco
 Run from the directory where you want to open Claude Code or OpenCode:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Ogglord/opn-mcp/main/install.sh | bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Ogglord/opn-mcp/main/install.sh)"
 ```
 
 The script will:

@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ ! -t 0 ]; then
-  exec </dev/tty
-fi
-
 REPO_URL="https://github.com/Ogglord/opn-mcp.git"
 INSTALL_DIR="$PWD/opn-mcp"
 
